@@ -20,7 +20,6 @@
       <h5>シャラポワトレーナー</h5>
       <i class="fas fa-user-astronaut">+Follwed</i>
     </div>
-
     <p>
       Hi! Itsuki 今日やるメニューはこれよ！
       <br />あなたのそのたるんだ身体を鍛えて
@@ -153,6 +152,7 @@ header {
 header {
   display: flex;
   padding-left: 35px;
+  box-sizing: border-box;
 }
 
 .header-item {
