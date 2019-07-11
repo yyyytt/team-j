@@ -1,17 +1,20 @@
 <template>
-  <main>
+  <div class="my-page">
+
     <header>
-      <h1>{{ msg }}</h1>
+      <h1>My Gym</h1>
       <div class="header-item">
         <i class="fas fa-search"></i>
-        <img src="../assets/itsuki.png" />
+        <img src="../assets/itsuki.png" @click="toProfile"/>
         <i class="fas fa-sort-down"></i>
       </div>
     </header>
-
+    
     <div>
       <h4>Today’s Your Menu</h4>
-      <img class="top" src="../assets/men.png" alt />
+      <div class="video__container">
+        <video src="../assets/men_1.mp4" poster="../assets/men_1_thumbnail.png"></video>
+      </div>
       <h3>上半身を中心としたエクササイズ</h3>
     </div>
 
@@ -57,7 +60,7 @@
       </div>
     </section>
 
-    <section2>
+    <section>
       <div class="left">
         <img src="../assets/3.png" alt />
         <p>痩せ顔メニュー</p>
@@ -83,7 +86,7 @@
           <i class="far fa-heart"></i>
         </div>
       </div>
-    </section2>
+    </section>
     <p class="see all">See all recent videos</p>
     <div class="menu">
       <h1>Chat</h1>
@@ -119,39 +122,38 @@
       </ul>
     </div>
     <input class="btn-flat-border" type="submit" value="Submit comment" />
-  </main>
+  </div>
 </template>
 
 <script>
+
 export default {
-  data() {
-    return {
-      msg: "My Gym",
-      login: "Log in",
-      or: "or",
-      signup: "sign up"
-    };
+  name: 'my-page',
+  methods: {
+    toProfile() {
+      this.$router.push('/profile')
+    }
   }
-};
+
+}
 </script>
 
 <style scoped>
-main {
+.my-page {
   margin: auto;
   width: 375px;
 }
+
 header {
   margin: auto;
   width: 350px;
 }
 
 /* itsuki style */
-.top {
-  width: 100%;
-}
+
 header {
   display: flex;
-  padding-left: 35px;
+  justify-content: space-between;
   box-sizing: border-box;
 }
 
@@ -161,26 +163,30 @@ header {
 }
 
 .header-item img {
-  width: 45px;
-  height: 45px;
-  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   margin: auto;
   margin-left: 15px;
+  cursor: pointer;
 }
 
 .header-item p {
   padding-top: 15px;
   padding-left: 5px;
-  color: #9966cc;
+  color: #aa5cb2;
 }
 
 .fas.fa-search {
   margin: auto;
-
   color: #fff;
-  background-color: #9966cc;
+  background-color: #aa5cb2;
   border-radius: 30px;
   padding: 4px;
+}
+
+.top {
+  width: 100%;
 }
 
 .trainer {
@@ -195,17 +201,17 @@ header {
 }
 
 .trainer img {
-  width: 45px;
-  height: 45px;
-  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 .fas.fa-user-astronaut {
   /* padding: 10px 0px 10px 37px; */
-  color: #9966cc;
+  color: #aa5cb2;
   margin: auto;
   padding: 8px;
 
-  border: 2px solid #9966cc;
+  border: 2px solid #aa5cb2;
   background-color: #fff;
   box-shadow: -2px 5px 5px #e8d3c7;
   border-radius: 20px;
@@ -219,7 +225,7 @@ header {
   border-radius: 15px;
   font-weight: bold;
   color: #fff;
-  background-color: #9966cc;
+  background-color: #aa5cb2;
   transition: 0.4s;
 }
 
@@ -228,7 +234,7 @@ header {
 }
 
 .btn-signup {
-  color: #9966cc;
+  color: #aa5cb2;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -249,11 +255,11 @@ section {
 }
 
 .far.fa-heart {
-  color: #9966cc;
+  color: #aa5cb2;
   margin: auto;
   padding: 8px;
 
-  border: 2px solid #9966cc; /*線の太さ・色*/
+  border: 2px solid #aa5cb2; /*線の太さ・色*/
   background-color: #fff; /*背景色*/
   box-shadow: -2px 5px 5px #e8d3c7; /*影*/
   border-radius: 20px;
@@ -272,11 +278,11 @@ section2 {
 
 .see.all {
   padding-top: 20px;
-  color: #9966cc;
+  color: #aa5cb2;
 }
 
 .number {
-  color: #9966cc;
+  color: #aa5cb2;
   display: flex;
   padding-left: 30px;
 }
@@ -288,7 +294,7 @@ section2 {
 .user img {
   width: 40px;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 50%;
   margin: auto;
   margin-left: 15px;
 }
@@ -304,9 +310,9 @@ section2 {
 }
 
 .fotter-item img {
-  width: 45px;
-  height: 45px;
-  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   margin: auto;
   margin-left: 15px;
 }
@@ -364,4 +370,13 @@ input:focus + .underline {
   background: #67c5ff;
   color: white;
 }
+
+.video__container {
+  width: 375px;
+}
+
+video {
+  width: 100%;
+}
+
 </style>

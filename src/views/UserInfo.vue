@@ -1,5 +1,5 @@
 <template>
-  <div id="userInfo">
+  <div class="user-info">
     <ul class="info__container">
       <li>
         <input
@@ -7,7 +7,7 @@
           min="120"
           placeholder="Your Height"
           v-model="info.height"
-        >
+        >cm
         <div class="underline"></div>
       </li>
       <li>
@@ -16,7 +16,7 @@
           min="30"
           placeholder="Your Weight"
           v-model="info.weight"
-        >
+        >Kg
         <div class="underline"></div>
       </li>
       <li>
@@ -50,24 +50,28 @@
           min="30"
           placeholder="Goal weight"
           v-model="info.goalWeight"
-        >
+        >Kg
         <div class="underline"></div>
       </li>
     </ul>
-    <button
-      class="register-btn"
+    <main-btn
+      str="Register"
       @click="addUserDetail"
     >
-      Register
-    </button>
+    </main-btn>
   </div>
 </template>
 ​
 <script>
 import Firebase from '../firebase'
+import MainBtn from '@/components/MainBtn'
+
 
 export default {
-  name: 'userInfo',
+  name: 'user-info',
+  components: {
+    MainBtn
+  },
   data() {
     return {
       uid: '',
@@ -90,6 +94,7 @@ export default {
       usersCollection.doc(this.uid).set(this.info)
       .then(doc => {
         console.log('added', doc)
+        this.$router.push('/my-page')
       })
       .catch(error => {
         console.error(error)
@@ -101,6 +106,9 @@ export default {
 </script>
 ​
 <style scoped>
+.user-info {
+  margin-top: 3rem;
+}
 
 .info__container {
   max-width: 26rem;
@@ -108,18 +116,32 @@ export default {
 }
 
 input {
-  font-size: 1rem;
+  font-size: 1.2rem;
   width: 10rem;
-  /* border: none; */
+  border: none;
   outline: none;
+  border-bottom: 1px solid #eee;
+  padding-bottom: .4rem;
+}
+input::placeholder {
+  font-size: 1rem;
 }
 
 label {
   display: block;
+  font-size: 1.2rem;
+}
+
+li {
+  margin-bottom: 1.6rem;
+}
+
+select {
+  font-size: 1rem;
 }
 
 .underline {
-  width: 10rem;
+  width: 12rem;
   height: 2px;
   background: #aa5cb2;
   transform-origin: center center;

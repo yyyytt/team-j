@@ -6,6 +6,9 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 
+const VueTouch = require('vue-touch')
+Vue.use(VueTouch, {name: 'v-touch'})
+
 Vue.prototype.$axios = axios;
 
 import Firebase from './firebase'
