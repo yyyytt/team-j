@@ -133,7 +133,7 @@ label {
 }
 
 li {
-  margin-bottom: 1.6rem;
+  margin-bottom: 2rem;
 }
 
 select {

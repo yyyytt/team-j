@@ -24,7 +24,7 @@
       <i class="fas fa-user-astronaut">+Follwed</i>
     </div>
     <p>
-      Hi! Itsuki 今日やるメニューはこれよ！
+      Hi! {{ userName }} 今日やるメニューはこれよ！
       <br />あなたのそのたるんだ身体を鍛えて
       <br />あげるわ！ガッデム
     </p>
@@ -106,7 +106,7 @@
 
     <div class="fotter-item">
       <img src="../assets/itsuki.png" />
-      <h2>Itsuki</h2>
+      <h2>{{ userName }}</h2>
     </div>
     <p>I can believe it!! Amazing job, Coryhoea!</p>
     <div class="number">
@@ -129,6 +129,11 @@
 
 export default {
   name: 'my-page',
+  data() {
+    return {
+      userName: this.$store.getters.user.displayName
+    }
+  },
   methods: {
     toProfile() {
       this.$router.push('/profile')

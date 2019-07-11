@@ -21,7 +21,7 @@
         </div>
         <div class="About-you">
           <h4>About You</h4>
-          <p>Hey! I’m Itsuki, a visual artist from Toronto. I love experimenting with reality and texture. If you enjoy my videos, please follow me!! I’ll follow you back :))</p>
+          <p>Hey! I’m {{ userName }}, a visual artist from Toronto. I love experimenting with reality and texture. If you enjoy my videos, please follow me!! I’ll follow you back :))</p>
         </div>
       </div>
 
