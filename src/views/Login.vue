@@ -1,6 +1,5 @@
 <template>
-  <div id="login">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div class="login">
     <h2>Login</h2>
     <form class="login-form" @keydown.enter="login">
       <input type="email" v-model="email" placeholder="E-mail">
@@ -8,12 +7,13 @@
       <button type="button" @click="login">Login</button>
     </form>
 
-    <google-login-btn/>
+    <!-- <google-login-btn/> -->
 
     <hr>
 
     <div>
-      <router-link to="/signup">Sign up</router-link>
+      <p>If you don't have your Account,</p>
+      <router-link to="/signup"><button>Sign Up</button></router-link>
     </div>
 
   </div>
@@ -21,13 +21,9 @@
 
 <script>
 import Firebase from '../firebase'
-import GoogleLoginBtn from '../components/GoogleLoginBtn'
 
 export default {
   name: 'login',
-  components: {
-    GoogleLoginBtn
-  },
   data() {
     return {
       email: '',

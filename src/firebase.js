@@ -2,6 +2,7 @@ import firebase from '@firebase/app'
 import '@firebase/auth'
 import '@firebase/firestore'
 import store from './store'
+import router from './router'
 
 const config = {
   apiKey: "AIzaSyBZDeJLIaYm09MRDpAIofDzdZM8a7vWZr0",
@@ -17,7 +18,7 @@ const config = {
 export default {
   init() {
     firebase.initializeApp(config)
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
   },
   onAuth() {
     firebase.auth().onAuthStateChanged(user => {
@@ -40,6 +41,7 @@ export default {
       })
       console.log(doc.user);
       console.log(`Created account: ${doc.user.email}`);
+      router.push('/user-info')
     })
     .catch(error => {
       console.log(error);
@@ -50,6 +52,7 @@ export default {
     .then(doc => {
       console.log(doc.user);
       console.log(`logined account: ${doc.user.email}`);
+      router.push('/my-page')
     })
     .catch(error => {
       console.log(error);
@@ -58,6 +61,10 @@ export default {
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider()
     firebase.auth().signInWithPopup(provider)
+    .then(doc => {
+      console.log(doc);
+      router.push('/')
+    })
   },
   logout() {
     firebase.auth().signOut()

@@ -1,24 +1,21 @@
 <template>
-  <main>
+  <div class="profile">
+
     <header>
-      <h1>{{ msg }}</h1>
+      <h1>My Gym</h1>
       <div class="header-item">
-        <div class="icon-pic-s">
-          <img src="../assets/itsuki.png" alt="pic1">
-        </div>
-        <div class="sankaku"></div>
+        <i class="fas fa-search"></i>
+        <img src="../assets/itsuki.png" @click="toMyPage"/>
+        <i class="fas fa-sort-down"></i>
       </div>
     </header>
 
     <div class="container">
-      <div class="profile">
+      <div class="">
         <div class="icon">
           <div class="user-info">
             <div class="icon-pic"><img src="../assets/itsuki.png" alt="pic1"></div>
-            <div class="name">
-              <div class="first-name">{{ first_name }}</div>
-              <div class="last-name">{{ last_name }}</div>
-            </div>
+            <p class="user-name">{{ userName }}</p>
           </div>
           <div class="edit-btn">Setting</div>
         </div>
@@ -75,78 +72,89 @@
       </div>
     </div>
 
+    <div class="logout">
+      <p @click="logout">Log Out</p>
+    </div>
+
     <footer>
       <p>© 2019 My Gym  Itsuki Corp.</p>
     </footer>
-  </main>
+
+  </div>
 </template>
 
 <script>
+import Firebase from '../firebase'
+
 export default {
+  name: 'profile',
   data() {
     return {
-      msg: "My Gym",
-      or: "or",
-      signup: "sign up",
-      first_name: "Itsuki",
-      last_name: "Kikuyama"
-    };
+      userName: this.$store.getters.user.displayName
+    }
+  },
+  methods: {
+    toMyPage() {
+      this.$router.push('/my-page')
+    },
+    logout() {
+      Firebase.logout()
+      this.$router.push('/login')
+    }
   }
-};
+}
 </script>
 
 <style scoped>
 
-main {
+.profile {
   width: 375px;
   margin: auto;
 }
 
 header {
-  display: flex;
-  padding-left: 40px;
   margin: auto;
+  width: 350px;
 }
 
-p {
-  font-size: 16px;
+/* itsuki style */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .header-item {
-  padding-left: 120px;
+  padding-left: 79px;
   display: flex;
-  padding-top: 20px;
+}
+
+.header-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: auto;
+  margin-left: 15px;
+  cursor: pointer;
 }
 
 .header-item p {
   padding-top: 15px;
   padding-left: 5px;
-  color: #9966cc;
+  color: #aa5cb2;
 }
 
-.icon-pic-s {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-}
-
-.icon-pic-s >img {
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  object-fit: cover;
-}
-
-.sankaku{
-	width: 0;
-	height: 0;
-  margin: 15px 10px;
-	border: 10px solid transparent;
-	border-top: 10px solid #AA5CB2;
+.fas.fa-search {
+  margin: auto;
+  color: #fff;
+  background-color: #aa5cb2;
+  border-radius: 30px;
+  padding: 4px;
 }
 
 .btn-signup {
-  color: #9966cc;
+  color: #aa5cb2;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -179,29 +187,27 @@ ul {
 
 .user-info{
   display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .name{
   padding: 10px;
 }
 
-.first-name{
-  font-size: 36px;
+.user-name{
+  font-size: 2rem;
   font-weight: bold;
 }
 
-.last-name{
-  font-size: 20px;
-  font-weight: bold;
-}
 
 .edit-btn {
   /* padding: 10px 0px 10px 37px; */
-  color: #9966cc;
+  color: #aa5cb2;
   margin: auto;
   padding: 8px;
 
-  border: 2px solid #9966cc; /*線の太さ・色*/
+  border: 2px solid #aa5cb2; /*線の太さ・色*/
   background-color: #fff; /*背景色*/
   box-shadow: -2px 5px 5px #e8d3c7; /*影*/
   border-radius: 20px; /*角の丸み*/
@@ -219,13 +225,12 @@ ul {
 .icon-pic {
   width: 100px;
   height: 100px;
-  border-radius: 50px;
 }
 
 .icon-pic >img {
   width: 100%;
   height: 100%;
-  border-radius: 50px;
+  border-radius: 50%;
   object-fit: cover;
 }
 
@@ -286,6 +291,10 @@ footer {
   text-align: center;
   color: #AA5CB2;
   font-weight: bold;
+}
+
+.logout {
+  cursor: pointer;
 }
 
 </style>
